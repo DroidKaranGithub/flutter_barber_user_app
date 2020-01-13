@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter_app_splashscreen/homescreen.dart';
+import 'package:flutter_app_splashscreen/loginscreen.dart';
 
 void main()=> runApp(MyApp());
 
@@ -25,7 +25,8 @@ class MyApp extends StatelessWidget {
         void initState() {
         super.initState();
         // loadHomePage();
-        Future.delayed(Duration(seconds: 2),(){Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => HomeScreen()));});
+        Future.delayed(Duration(seconds: 2),(){Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) =>
+        LoginScreen()));});
   }
 
     // Future<Future> loadHomePage()async{

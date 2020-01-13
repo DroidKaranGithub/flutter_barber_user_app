@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app_splashscreen/homescreen.dart';
 import 'package:pin_view/pin_view.dart';
 
 class OtpScreen extends StatelessWidget {
@@ -26,15 +27,14 @@ class _HomeState extends State<Home> {
   const oneSec = const Duration(seconds: 1);
   timer = new Timer.periodic(oneSec, (Timer timer)=> setState((){
       if(startTime <1){
-        rsOpecity = 1;
+        rsOpecity = 1.0;
         timer.cancel();
       }else{
-        rsOpecity = 0.5;
+        rsOpecity = 0.3;
         startTime = startTime-1;
       }
   }));
 } 
-
   @override
   void initState() {
     super.initState();
@@ -49,12 +49,14 @@ class _HomeState extends State<Home> {
         ),
         home: Scaffold(
           body: Container(
-            
+            // height: MediaQuery.of(context).devicePixelRatio,
+            // width: MediaQuery.of(context).devicePixelRatio,
+            margin: EdgeInsets.only(top: 50),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+              // crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 Container(
+                  alignment: Alignment.topLeft,
                   margin: EdgeInsets.only( left: 20),
                   child: Text('OTP',
                 style: TextStyle(
@@ -63,6 +65,7 @@ class _HomeState extends State<Home> {
                 ),)
                 ),
                   Container (
+                    margin: EdgeInsets.only(top: 100),
                     padding: EdgeInsets.symmetric(horizontal: 30.0),
                     child: PinView (
                       count: 6, // count of the fields, excluding dashes
@@ -98,7 +101,8 @@ class _HomeState extends State<Home> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: <Widget>[
                         Container(
-                          margin: EdgeInsets.only(bottom: 100, right: 30),
+
+                          margin: EdgeInsets.only(top: 5, right: 30),
                           child: Text('00:$startTime',
                           style: TextStyle(
                             fontFamily: 'Montserrat-Medium',
@@ -108,9 +112,11 @@ class _HomeState extends State<Home> {
                       ],
                     ),
                   Container(
+                    margin: EdgeInsets.only(top: 100),
                     alignment: Alignment.center,
                     child: Opacity(
-                      opacity: rsOpecity,
+                    
+                      opacity: 1,
                       child: Text('Resend',
                       style: TextStyle(
                         fontFamily: 'Montserrat-SemiBold',
@@ -118,7 +124,27 @@ class _HomeState extends State<Home> {
                         color: Colors.orange[800]
                       ),),
                     ),
-                  )
+                  ),
+                  Container(
+                margin: EdgeInsets.only(top: 50),
+                height: 45,
+                width: 120,
+                child: RaisedButton(
+                color: Colors.orange[800],
+                child: Text('Submit',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontFamily: 'Montserrat-SemiBold',
+                  fontSize: 15
+                ),),
+                onPressed: (){
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> HomeScreen()));
+                },
+                shape: RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(15)
+                ),
+              ),
+              ) 
                 ],
               )
                 )
