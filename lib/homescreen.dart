@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 
 
 class HomeScreen extends StatelessWidget {
-  @override
+      @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
