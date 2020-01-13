@@ -1,4 +1,4 @@
-# flutter_app_splashscreen
+# flutter_app_barber
 
 A new Flutter project.
 
