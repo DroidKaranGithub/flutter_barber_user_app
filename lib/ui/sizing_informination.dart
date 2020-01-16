@@ -7,14 +7,12 @@ class SizingInformation {
   final Size screenSize;
   final Size localWidgetSize;
 
+  
   SizingInformation(
       {this.orientation,
       this.deviceScreentype,
       this.screenSize,
       this.localWidgetSize});
 
-      @override
-  String toString() {
-    return super.toString();
-  }
+      
 }

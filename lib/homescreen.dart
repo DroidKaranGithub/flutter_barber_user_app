@@ -1,4 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app_splashscreen/common/sliderightroute.dart';
+import 'package:flutter_app_splashscreen/tabs/hometab.dart';
+import 'package:flutter_app_splashscreen/tabs/navigationtab.dart';
+import 'package:flutter_app_splashscreen/tabs/offerstab.dart';
+import 'package:flutter_app_splashscreen/tabs/saloonlisttab.dart';
+import 'package:flutter_app_splashscreen/tabs/trendstab.dart';
+
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -10,28 +18,15 @@ class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
 }
-class _HomeState extends State<Home> {
+class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
   int _selectedIndex = 0;
-  String imageIcon ;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 1: Saloon',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: Trends',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 3: Offers',
-      style: optionStyle,
-    ),
+    List<Widget> _widgetOptions = [
+    HomeTab(),
+    SaloonListTab(),
+    TrendsTab(),
+    OffersTab()
   ];
 
   void _onItemTapped(int index) {
@@ -49,9 +44,39 @@ class _HomeState extends State<Home> {
         primaryColor: Colors.orange[800]
       ),
       home: Scaffold(
-      // appBar: AppBar(
-      //   title: const Text('BottomNavigationBar Sample'),
-      // ),
+      appBar: AppBar(
+      leading: Builder(
+            builder: (BuildContext context){
+              return IconButton(
+                icon: ImageIcon(
+                  AssetImage('images/img_nav_open.png'),
+                  color: Colors.black,
+                ),
+                onPressed: () {
+                Navigator.push(context, SlideRightRoute(page: NavigationTab()));
+
+            });}),
+        title: Text("Flutter App"),
+        actions: <Widget>[
+          IconButton(
+            icon: ImageIcon(
+                  AssetImage('images/img_notification_false.png'),
+                  color: Colors.black,
+                ),
+            onPressed: () {
+            },
+          ),
+          // IconButton(
+          //   icon: ImageIcon(
+          //         AssetImage('images/img_home_unselect.png'),
+          //         color: Colors.black,
+          //       ),
+          //   onPressed: () {
+          //   },
+          // )
+        ],
+        backgroundColor: Colors.white,
+      ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
@@ -63,6 +88,8 @@ class _HomeState extends State<Home> {
               AssetImage('images/img_home_unselect.png'),
                     color: Colors.black,
               ),
+              activeIcon: ImageIcon(
+              AssetImage('images/img_home_select.png')),
             title: Text('Home'),
           ),
           BottomNavigationBarItem(
@@ -70,13 +97,17 @@ class _HomeState extends State<Home> {
               AssetImage('images/img_booking_unseletc.png'),
                     color: Colors.black,
               ),
+              activeIcon: ImageIcon(
+              AssetImage('images/img_booking_select.png')),
             title: Text('Saloon'),
           ),
           BottomNavigationBarItem(
             icon: ImageIcon(
-              AssetImage('images/img_trend_unselect.png'),
+              AssetImage('images/img_trend_select.png'),
                     color: Colors.black,
               ),
+              activeIcon: ImageIcon(
+              AssetImage('images/img_trend_select.png')),
             title: Text('Trends'),
           ),
           BottomNavigationBarItem(
@@ -84,6 +115,8 @@ class _HomeState extends State<Home> {
               AssetImage('images/img_offers_unselect.png'),
                     color: Colors.black,
               ),
+              activeIcon: ImageIcon(
+              AssetImage('images/img_offers_select.png')),
             title: Text('Offers'),
           ),
         ],
